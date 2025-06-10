@@ -2,6 +2,8 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Welcome to Tetris!");
         startGame();
+        Tetromino piece = Tetromino.randomShape();
+        System.out.println(piece);
 
     }
 

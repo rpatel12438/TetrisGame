@@ -1,12 +1,20 @@
+import java.util.Random;
+
 public class Tetromino {
+    private String type;
     private int[][] shape;
     private int row;
     private int col;
 
-    public Tetromino(int[][] shape){
+    public Tetromino(int[][] shape, String type){
         this.shape = shape;
+        this.type = type;
         this.row = 0;
         this.col = 4;
+    }
+
+    public String toString(){
+        return "Piece type is: " + type;
     }
 
     public int[][]getShape(){
@@ -58,5 +66,24 @@ public class Tetromino {
             {1, 1, 0}
     };
 
+    public static Tetromino randomShape(){
+        Random random = new Random();
+        int rand = random.nextInt(7);
+        if(rand == 0){
+            return new Tetromino(LINE_SHAPE, "Line");
+        } else if (rand == 1) {
+            return new Tetromino(T_SHAPE, "T");
+        } else if (rand == 2) {
+            return new Tetromino(L_SHAPE, "L");
+        } else if (rand == 3) {
+            return new Tetromino(J_SHAPE, "J");
+        } else if (rand == 4) {
+            return new Tetromino(Z_SHAPE, "Z");
+        } else if (rand == 5) {
+            return new Tetromino(S_SHAPE, "S");
+        } else{
+            return new Tetromino(SQUARE_SHAPE, "Square");
+        }
+    }
 
 }
