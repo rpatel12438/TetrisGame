@@ -10,7 +10,7 @@ public class Tetromino {
         this.shape = shape;
         this.type = type;
         this.row = 0;
-        this.col = 4;
+        this.col = 3;
     }
 
     public String toString(){
@@ -85,5 +85,6 @@ public class Tetromino {
             return new Tetromino(SQUARE_SHAPE, "Square");
         }
     }
+
 
 }
