@@ -9,7 +9,7 @@ public class Main {
         placePiece(currentPiece);
         System.out.println();
         printGrid();
-        autoDrop(currentPiece);
+        autoDrop();
 
     }
 
@@ -52,8 +52,7 @@ public class Main {
     }
 
 
-    public static void autoDrop(Tetromino piece){
-        piece = currentPiece;
+    public static void autoDrop(){
         Timer timer = new Timer();
         TimerTask task = new TimerTask(){
             @Override
@@ -61,7 +60,6 @@ public class Main {
                 int col = currentPiece.getCol();
                 int row = currentPiece.getRow();
                 int [][] shape = currentPiece.getShape();
-                System.out.println("Current row: " + row + "current col: " + col);
                 for(int i = 0; i < currentPiece.getShape().length; i++){
                     for(int j = 0; j < currentPiece.getShape()[i].length; j++){
                             if (shape[i][j] == 1){
