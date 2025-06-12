@@ -59,19 +59,23 @@ public class Main {
             public void run(){
                 int col = currentPiece.getCol();
                 int row = currentPiece.getRow();
+                int [][] shape = currentPiece.getShape();
                 System.out.println("Current row: " + row + "current col: " + col);
-                for(int i = 0; i < grid.length; i++){
-                    for(int j = 0; j < grid[row].length; j++){
-                        if (grid[i][j] == '#'){
-                            grid[i][j] = '.';
-                            printGrid();
-                            System.out.println();
-                        }
+                for(int i = 0; i < currentPiece.getShape().length; i++){
+                    for(int j = 0; j < currentPiece.getShape()[i].length; j++){
+                            if (shape[i][j] == 1){
+                                grid[row + i][col + j] = '.';
+                                printGrid();
+                                System.out.println();
+                            }
                     }
                 }
+                currentPiece.setRow(currentPiece.getRow() + 1);
+                placePiece(currentPiece);
             }
         };
-        timer.scheduleAtFixedRate(task, 0,4000);
+        timer.scheduleAtFixedRate(task, 0,1000);
+        printGrid();
     }
 
 }

@@ -23,6 +23,12 @@ public class Tetromino {
     public int getRow(){
         return row;
     }
+    public void setRow(int newRow){
+        this.row = newRow;
+    }
+    public void setCol(int newCol){
+        this.col = newCol;
+    }
     public int getCol(){
         return col;
     }
