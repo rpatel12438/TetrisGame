@@ -1,12 +1,17 @@
+import java.util.*;
+
 public class Main {
+    static Tetromino currentPiece;
     public static void main(String[] args) {
         System.out.println("Welcome to Tetris!");
         startGame();
-        Tetromino piece = Tetromino.randomShape();
-        placePiece(piece);
+        currentPiece = Tetromino.randomShape();
+        placePiece(currentPiece);
         System.out.println();
         printGrid();
+        autoDrop(currentPiece);
     }
+
 
     public static void startGame(){
         System.out.println("Game started.");
@@ -45,5 +50,28 @@ public class Main {
         }
     }
 
+
+    public static void autoDrop(Tetromino piece){
+        piece = currentPiece;
+        Timer timer = new Timer();
+        TimerTask task = new TimerTask(){
+            @Override
+            public void run(){
+                int col = currentPiece.getCol();
+                int row = currentPiece.getRow();
+                System.out.println("Current row: " + row + "current col: " + col);
+                for(int i = 0; i < grid.length; i++){
+                    for(int j = 0; j < grid[row].length; j++){
+                        if (grid[i][j] == '#'){
+                            grid[i][j] = '.';
+                            printGrid();
+                            System.out.println();
+                        }
+                    }
+                }
+            }
+        };
+        timer.scheduleAtFixedRate(task, 0,4000);
+    }
 
 }
