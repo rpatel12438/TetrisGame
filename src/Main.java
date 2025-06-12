@@ -10,6 +10,7 @@ public class Main {
         System.out.println();
         printGrid();
         autoDrop(currentPiece);
+
     }
 
 
@@ -65,17 +66,47 @@ public class Main {
                     for(int j = 0; j < currentPiece.getShape()[i].length; j++){
                             if (shape[i][j] == 1){
                                 grid[row + i][col + j] = '.';
-                                printGrid();
                                 System.out.println();
                             }
                     }
                 }
-                currentPiece.setRow(currentPiece.getRow() + 1);
-                placePiece(currentPiece);
+                if(canMoveDown() == true) {
+                    currentPiece.setRow(currentPiece.getRow() + 1);
+                    placePiece(currentPiece);
+                }else{
+                    placePiece(currentPiece);
+                    currentPiece = Tetromino.randomShape();
+                    placePiece(currentPiece);
+                }
+                printGrid();
             }
         };
         timer.scheduleAtFixedRate(task, 0,1000);
         printGrid();
+    }
+
+    public static boolean canMoveDown(){
+        int row = currentPiece.getRow();
+        int col = currentPiece.getCol();
+        int[][] shape = currentPiece.getShape();
+
+        for(int i = 0; i < shape.length; i++){
+            for(int j = 0; j < shape[i].length; j++){
+                if(shape[i][j] == 1){
+                    int newRow = row + i + 1;
+                    int newCol = col + j;
+
+                    if(newRow >= grid.length){
+                        return false;
+                    }
+
+                    if(grid[newRow][newCol] == '#'){
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
     }
 
 }
