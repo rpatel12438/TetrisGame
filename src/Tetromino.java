@@ -43,6 +43,27 @@ public class Tetromino {
         row++;
     }
 
+    public void rotate(){
+        int x = shape.length;
+        int[][] rotatedShape = new int[x][x];
+        //transpose step
+        for(int i = 0; i < x; i++){
+            for(int j = 0; j < x; j++){
+                int temp = shape[i][j];
+                shape[i][j] = shape[j][i];
+                shape[j][i] = temp;
+            }
+        }
+        //flip rows over middle y axis
+        for(int i = 0; i < x; i++){
+            for(int j = 0; j < x/2; j++){
+                int temp = shape[i][j];
+                shape[i][j] = shape[i][x - 1 - j];
+                shape[i][x - 1 - j] = temp;
+            }
+        }
+    }
+
     //create shapes
     public static int[][] LINE_SHAPE = {
             {0, 0, 0, 0},
@@ -65,10 +86,13 @@ public class Tetromino {
             {1, 1, 1},
             {0, 0, 0}
     };
+
     public static int[][] SQUARE_SHAPE = {
-            {1, 1},
-            {1, 1}
+            {1, 1, 0},
+            {1, 1, 0},
+            {0, 0, 0}
     };
+
     public static int[][] Z_SHAPE = {
             {1, 1, 0},
             {0, 1, 1},
