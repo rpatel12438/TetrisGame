@@ -9,7 +9,7 @@ public class Tetromino {
     public Tetromino(int[][] shape, String type){
         this.shape = shape;
         this.type = type;
-        this.row = 1;
+        this.row = 0;
         this.col = 3;
     }
 

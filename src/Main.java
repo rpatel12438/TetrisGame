@@ -8,7 +8,6 @@ public class Main {
         currentPiece = Tetromino.randomShape();
         placePiece(currentPiece);
         System.out.println();
-        printGrid();
         autoDrop();
 
     }
@@ -60,6 +59,7 @@ public class Main {
                 int col = currentPiece.getCol();
                 int row = currentPiece.getRow();
                 int [][] shape = currentPiece.getShape();
+                System.out.println("Current row: " + row + "current col: " + col);
                 for(int i = 0; i < currentPiece.getShape().length; i++){
                     for(int j = 0; j < currentPiece.getShape()[i].length; j++){
                             if (shape[i][j] == 1){
