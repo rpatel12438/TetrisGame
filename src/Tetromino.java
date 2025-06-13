@@ -9,7 +9,7 @@ public class Tetromino {
     public Tetromino(int[][] shape, String type){
         this.shape = shape;
         this.type = type;
-        this.row = 0;
+        this.row = 1;
         this.col = 3;
     }
 
@@ -45,19 +45,25 @@ public class Tetromino {
 
     //create shapes
     public static int[][] LINE_SHAPE = {
-            {1, 1, 1, 1}
+            {0, 0, 0, 0},
+            {1, 1, 1, 1},
+            {0, 0, 0, 0},
+            {0, 0, 0 ,0}
     };
     public static int[][] T_SHAPE = {
             {0, 1, 0},
-            {1, 1, 1}
+            {1, 1, 1},
+            {0, 0, 0}
     };
     public static int[][] L_SHAPE = {
             {0, 0, 1},
-            {1, 1, 1}
+            {1, 1, 1},
+            {0, 0, 0}
     };
     public static int[][] J_SHAPE = {
             {1, 0, 0},
-            {1, 1, 1}
+            {1, 1, 1},
+            {0, 0, 0}
     };
     public static int[][] SQUARE_SHAPE = {
             {1, 1},
@@ -65,11 +71,13 @@ public class Tetromino {
     };
     public static int[][] Z_SHAPE = {
             {1, 1, 0},
-            {0, 1, 1}
+            {0, 1, 1},
+            {0, 0, 0}
     };
     public static int[][] S_SHAPE = {
             {0, 1, 1},
-            {1, 1, 0}
+            {1, 1, 0},
+            {0, 0, 0}
     };
 
     public static Tetromino randomShape(){
