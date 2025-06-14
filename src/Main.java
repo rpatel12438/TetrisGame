@@ -10,6 +10,7 @@ public class Main {
         System.out.println();
         autoDrop();
 
+
     }
 
 
@@ -70,6 +71,7 @@ public class Main {
                 }
                 if(canMoveDown() == true) {
                     currentPiece.setRow(currentPiece.getRow() + 1);
+                    currentPiece.rotate();
                     placePiece(currentPiece);
                 }else{
                     placePiece(currentPiece);

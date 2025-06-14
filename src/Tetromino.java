@@ -48,7 +48,7 @@ public class Tetromino {
         int[][] rotatedShape = new int[x][x];
         //transpose step
         for(int i = 0; i < x; i++){
-            for(int j = 0; j < x; j++){
+            for(int j = i + 1; j < x; j++){
                 int temp = shape[i][j];
                 shape[i][j] = shape[j][i];
                 shape[j][i] = temp;
