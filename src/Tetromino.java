@@ -60,6 +60,7 @@ public class Tetromino {
                 shape[i][x - 1 - j] = temp;
             }
         }
+
     }
 
     //create shapes
