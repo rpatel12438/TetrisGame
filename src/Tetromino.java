@@ -33,9 +33,7 @@ public class Tetromino {
         return col;
     }
 
-    public void moveRight(){
-        col++;
-    }
+
     public void moveLeft(){
         col--;
     }
