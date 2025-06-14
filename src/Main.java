@@ -70,6 +70,7 @@ public class Main {
                 }
                 if(canMoveDown() == true) {
                     currentPiece.setRow(currentPiece.getRow() + 1);
+                    currentPiece.rotate();
                     moveRight();
                     placePiece(currentPiece);
                 }else{
@@ -119,9 +120,34 @@ public class Main {
                 }
             }
         }
-        Main.currentPiece.setCol(col + 1);
+        if(canMoveRight() == true) {
+            currentPiece.setCol(currentPiece.getCol() + 1);
+            placePiece(currentPiece);
+        }
     }
 
+    public static boolean canMoveRight(){
+        int row = currentPiece.getRow();
+        int col = currentPiece.getCol();
+        int[][] shape = currentPiece.getShape();
 
+        for(int i = 0; i < shape.length; i++){
+            for(int j = 0; j < shape[i].length; j++){
+                if(shape[i][j] == 1){
+                    int newRow = row + i;
+                    int newCol = col + j + 1;
+
+                    if(newCol >= grid[0].length){
+                        return false;
+                    }
+
+                    if(grid[newRow][newCol] == '#'){
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
 
 }
