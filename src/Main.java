@@ -54,8 +54,8 @@ public class Main {
         int [][] shape = currentPiece.getShape();
         int col = currentPiece.getCol();
         int row = currentPiece.getRow();
-        for(int i = 0; i < currentPiece.getShape().length; i++){
-            for(int j = 0; j < currentPiece.getShape()[i].length; j++){
+        for(int i = 0; i < shape.length; i++){
+            for(int j = 0; j < shape[i].length; j++){
                 if(shape[i][j] == 1){
                     grid[row + i][col + j] = '.';
                 }
@@ -75,10 +75,10 @@ public class Main {
                 System.out.println("Current row: " + row + "current col: " + col);
                 erasePiece();
                 if(canMoveDown() == true) {
-                    currentPiece.setRow(currentPiece.getRow() + 1);
+                    currentPiece.setRow(row + 1);
                     currentPiece.rotate();
                     placePiece(currentPiece);
-                    moveRight();
+                    moveLeft();
                     placePiece(currentPiece);
                 }else{
                     placePiece(currentPiece);
@@ -122,7 +122,7 @@ public class Main {
         int [][] shape = currentPiece.getShape();
         erasePiece();
         if(canMoveRight() == true) {
-            currentPiece.setCol(currentPiece.getCol() + 1);
+            currentPiece.setCol(col + 1);
             placePiece(currentPiece);
         }
     }
@@ -145,6 +145,38 @@ public class Main {
                     if(grid[newRow][newCol] == '#'){
                         return false;
                     }
+                }
+            }
+        }
+        return true;
+    }
+
+    public static void moveLeft(){
+        int [][] shape = currentPiece.getShape();
+        int col = currentPiece.getCol();
+        int row = currentPiece.getRow();
+        erasePiece();
+        if(canMoveLeft() == true){
+            currentPiece.setCol(col - 1);
+            placePiece(currentPiece);
+        }
+
+    }
+
+    public static boolean canMoveLeft(){
+        int [][] shape = currentPiece.getShape();
+        int col = currentPiece.getCol();
+        int row = currentPiece.getRow();
+
+        for(int i = 0; i < shape.length; i++){
+            for(int j = 0; j < shape[i].length; j++){
+                if(shape[i][j] == 1){
+                    int newRow = row + i;
+                    int newCol = col + i - 1;
+                    if(newCol < 0 || grid[newRow][newCol] == '#'){
+                        return false;
+                    }
+
                 }
             }
         }
