@@ -50,6 +50,19 @@ public class Main {
         }
     }
 
+    public static void erasePiece(){
+        int [][] shape = currentPiece.getShape();
+        int col = currentPiece.getCol();
+        int row = currentPiece.getRow();
+        for(int i = 0; i < currentPiece.getShape().length; i++){
+            for(int j = 0; j <currentPiece.getShape()[i].length; j++){
+                if(shape[i][j] == 1){
+                    grid[row + i][col + 1] = '.';
+                }
+            }
+        }
+    }
+
 
     public static void autoDrop(){
         Timer timer = new Timer();
