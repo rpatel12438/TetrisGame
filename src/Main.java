@@ -1,4 +1,8 @@
 import java.util.*;
+import javax.swing.*;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
 
 public class Main {
     static Tetromino currentPiece;
@@ -65,8 +69,8 @@ public class Main {
 
 
     public static void autoDrop(){
-        Timer timer = new Timer();
-        TimerTask task = new TimerTask(){
+        java.util.Timer timer = new java.util.Timer();
+        java.util.TimerTask task = new java.util.TimerTask(){
             @Override
             public void run(){
                 int col = currentPiece.getCol();
@@ -77,6 +81,7 @@ public class Main {
                 if(canMoveDown() == true) {
                     currentPiece.setRow(row + 1);
                     currentPiece.rotate();
+                    moveRight();
                     placePiece(currentPiece);
                     moveLeft();
                     placePiece(currentPiece);
