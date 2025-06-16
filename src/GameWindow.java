@@ -3,16 +3,13 @@ import javax.swing.*;
 
 public class GameWindow extends JFrame{
 
-    public GameWindow(char[][] grid){
-        setTitle("Tetris");
-        setSize(400,700);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setResizable(false);
-        setVisible(true);
-
-        GamePanel panel = new GamePanel(grid);
-        add(panel);
-        pack();
-        setVisible(true);
+    public GameWindow(GamePanel panel){
+        this.setTitle("Tetris");
+        this.setSize(400,700);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setResizable(false);
+        this.add(panel);
+        this.pack();
+        this.setVisible(true);
     }
 }

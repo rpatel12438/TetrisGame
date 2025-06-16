@@ -9,11 +9,12 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Welcome to Tetris!");
         startGame();
-        new GameWindow(grid);
         currentPiece = Tetromino.randomShape();
         placePiece(currentPiece);
         System.out.println();
-        autoDrop();
+        GamePanel panel = new GamePanel((grid));
+        GameWindow window = new GameWindow(panel);
+        autoDrop(panel);
 
     }
 
@@ -69,7 +70,7 @@ public class Main {
     }
 
 
-    public static void autoDrop(){
+    public static void autoDrop(GamePanel panel){
         java.util.Timer timer = new java.util.Timer();
         java.util.TimerTask task = new java.util.TimerTask(){
             @Override
@@ -92,6 +93,7 @@ public class Main {
                     placePiece(currentPiece);
                 }
                 printGrid();
+                panel.repaint();
             }
         };
         timer.scheduleAtFixedRate(task, 0,1000);
