@@ -7,9 +7,9 @@ import javax.swing.JTextField;
 public class Main {
     static Tetromino currentPiece;
     public static void main(String[] args) {
-        new GameWindow();
         System.out.println("Welcome to Tetris!");
         startGame();
+        new GameWindow(grid);
         currentPiece = Tetromino.randomShape();
         placePiece(currentPiece);
         System.out.println();
