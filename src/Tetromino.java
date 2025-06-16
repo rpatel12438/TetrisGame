@@ -7,10 +7,18 @@ public class Tetromino {
     private int col;
 
     public Tetromino(int[][] shape, String type){
-        this.shape = shape;
+        this.shape = copyShape(shape);
         this.type = type;
         this.row = 0;
         this.col = 3;
+    }
+
+    private int[][] copyShape(int[][] original){
+        int[][] copy = new int[original.length][original[0].length];
+        for(int i = 0; i < original.length; i++){
+            System.arraycopy(original[i], 0, copy[i], 0, original[i].length);
+        }
+        return copy;
     }
 
     public String toString(){
@@ -43,7 +51,6 @@ public class Tetromino {
 
     public void rotate(){
         int x = shape.length;
-        int[][] rotatedShape = new int[x][x];
         //transpose step
         for(int i = 0; i < x; i++){
             for(int j = i + 1; j < x; j++){

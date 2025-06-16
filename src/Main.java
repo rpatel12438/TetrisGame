@@ -82,10 +82,8 @@ public class Main {
                 erasePiece();
                 if(canMoveDown() == true) {
                     currentPiece.setRow(row + 1);
-                    currentPiece.rotate();
-                    moveRight();
+
                     placePiece(currentPiece);
-                    moveLeft();
                     placePiece(currentPiece);
                 }else{
                     placePiece(currentPiece);
@@ -180,7 +178,7 @@ public class Main {
             for(int j = 0; j < shape[i].length; j++){
                 if(shape[i][j] == 1){
                     int newRow = row + i;
-                    int newCol = col + i - 1;
+                    int newCol = col + j - 1;
                     if(newCol < 0 || grid[newRow][newCol] == '#'){
                         return false;
                     }
