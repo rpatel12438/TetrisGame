@@ -14,7 +14,6 @@ public class Main {
         GamePanel panel = new GamePanel((grid));
         GameWindow window = new GameWindow(panel);
         autoDrop(panel);
-
     }
 
 
@@ -187,4 +186,18 @@ public class Main {
         return true;
     }
 
-}
+    public static void hardDrop(GamePanel panel){
+        erasePiece();
+        int col = currentPiece.getCol();
+        int row = currentPiece.getRow();
+        int [][] shape = currentPiece.getShape();
+        while(canMoveDown()) {
+            currentPiece.moveDown();
+        }
+        placePiece(currentPiece);
+        currentPiece = Tetromino.randomShape();
+        placePiece(currentPiece);
+        printGrid();
+        panel.repaint();
+        }
+    }
