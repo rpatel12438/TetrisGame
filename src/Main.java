@@ -186,11 +186,18 @@ public class Main {
         return true;
     }
 
+    public static void rotatePiece(GamePanel panel) {
+        erasePiece();
+        if (currentPiece.canRotate(grid)) {
+            currentPiece.rotate();
+        }
+        placePiece(currentPiece);
+        panel.repaint();
+    }
+
+
     public static void hardDrop(GamePanel panel){
         erasePiece();
-        int col = currentPiece.getCol();
-        int row = currentPiece.getRow();
-        int [][] shape = currentPiece.getShape();
         while(canMoveDown()) {
             currentPiece.moveDown();
         }
