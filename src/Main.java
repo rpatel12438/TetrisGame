@@ -82,8 +82,10 @@ public class Main {
                 erasePiece();
                 if(canMoveDown() == true) {
                     currentPiece.setRow(row + 1);
-
-                    placePiece(currentPiece);
+                    moveRight();
+                    if(currentPiece.canRotate(grid)){
+                        currentPiece.rotate();
+                    }
                     placePiece(currentPiece);
                 }else{
                     placePiece(currentPiece);

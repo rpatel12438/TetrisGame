@@ -42,9 +42,6 @@ public class Tetromino {
     }
 
 
-    public void moveLeft(){
-        col--;
-    }
     public void moveDown(){
         row++;
     }
@@ -68,6 +65,45 @@ public class Tetromino {
             }
         }
 
+    }
+
+    public boolean canRotate(char[][] grid){
+        int[][] rotated = new int[shape.length][shape.length];
+        for(int i = 0; i < shape.length; i++){
+            for(int j = 0; j < shape[i].length; j++){
+                rotated[i][j] = shape[i][j];
+            }
+        }
+        for(int i = 0; i < shape.length; i++){
+            for(int j = i + 1; j < shape[i].length; j++){
+                int temp = rotated[i][j];
+                rotated[i][j] = rotated[j][i];
+                rotated[j][i] = temp;
+            }
+        }
+        //flip rows over middle y axis
+        for(int i = 0; i < shape.length; i++){
+            for(int j = 0; j < shape[i].length/2; j++){
+                int temp = rotated[i][j];
+                rotated[i][j] = rotated[i][shape.length - 1 - j];
+                rotated[i][shape.length - 1 - j] = temp;
+            }
+        }
+        for(int i = 0; i < shape.length; i++){
+            for(int j = 0; j < shape[i].length; j++){
+                if(rotated[i][j] == 1){
+                    int newRow = row + i;
+                    int newCol = col + j;
+                    if(newRow >= grid.length || newRow < 0 || newCol < 0 || newCol >= grid[0].length){
+                        return false;
+                    }
+                    if(grid[newRow][newCol] == '#'){
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
     }
 
     //create shapes
