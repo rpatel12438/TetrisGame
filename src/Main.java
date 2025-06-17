@@ -10,7 +10,6 @@ public class Main {
         System.out.println("Welcome to Tetris!");
         startGame();
         currentPiece = Tetromino.randomShape();
-        placePiece(currentPiece);
         System.out.println();
         GamePanel panel = new GamePanel((grid));
         GameWindow window = new GameWindow(panel);
@@ -75,6 +74,7 @@ public class Main {
         java.util.TimerTask task = new java.util.TimerTask(){
             @Override
             public void run(){
+                erasePiece();
                 int col = currentPiece.getCol();
                 int row = currentPiece.getRow();
                 int [][] shape = currentPiece.getShape();
@@ -82,22 +82,18 @@ public class Main {
                 erasePiece();
                 if(canMoveDown() == true) {
                     currentPiece.setRow(row + 1);
-                    moveRight();
-                    if(currentPiece.canRotate(grid)){
-                        currentPiece.rotate();
-                    }
                     placePiece(currentPiece);
                 }else{
                     placePiece(currentPiece);
                     currentPiece = Tetromino.randomShape();
                     placePiece(currentPiece);
                 }
+                placePiece(currentPiece);
                 printGrid();
                 panel.repaint();
             }
         };
         timer.scheduleAtFixedRate(task, 0,1000);
-        printGrid();
     }
 
     public static boolean canMoveDown(){
