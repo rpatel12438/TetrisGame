@@ -103,7 +103,6 @@ public class Main {
                 erasePiece();
                 int col = currentPiece.getCol();
                 int row = currentPiece.getRow();
-                int [][] shape = currentPiece.getShape();
                 System.out.println("Current row: " + row + "current col: " + col);
                 erasePiece();
                 if(canMoveDown() == true) {
@@ -132,9 +131,7 @@ public class Main {
      * Method to move the current piece down 1 row
      */
     public static void moveDown(){
-        int col = currentPiece.getCol();
         int row = currentPiece.getRow();
-        int[][] shape = currentPiece.getShape();
         erasePiece();
         if(canMoveDown() == true){
             currentPiece.setRow((row + 1));
@@ -181,8 +178,6 @@ public class Main {
      */
     public static void moveRight(){
         int col = currentPiece.getCol();
-        int row = currentPiece.getRow();
-        int [][] shape = currentPiece.getShape();
         erasePiece();
         if(canMoveRight() == true) {
             currentPiece.setCol(col + 1);
@@ -224,7 +219,6 @@ public class Main {
     public static void moveLeft(){
         int [][] shape = currentPiece.getShape();
         int col = currentPiece.getCol();
-        int row = currentPiece.getRow();
         erasePiece();
         if(canMoveLeft() == true){
             currentPiece.setCol(col - 1);
@@ -295,7 +289,6 @@ public class Main {
     public static boolean checkGameOver(Tetromino piece){
             int [][] shape = piece.getShape();
             int row = piece.getRow();
-            int col = piece.getCol();
 
             for(int i = 0; i < shape.length; i++){
                 for(int j = 0; j < shape[i].length; j++){
