@@ -51,6 +51,9 @@ public class Tetromino {
         return col;
     }
 
+    public void moveDown(){
+        row++;
+    }
     /**
      * Rotates the current piece 90 degrees clockwise by transposing then flipping over rows
      */
