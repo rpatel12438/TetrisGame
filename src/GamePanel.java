@@ -6,13 +6,17 @@ import java.awt.event.KeyListener;
 public class GamePanel extends JPanel {
     private char[][] grid;
 
-    public GamePanel(char[][] grid){
+   public GamePanel(char[][] grid){
         this.grid = grid;
         setFocusable(true);
         requestFocusInWindow();
         keyBindings();
     }
 
+    /**
+     * Create the grid in the game window using units/squares
+     * @param g the <code>Graphics</code> object to protect
+     */
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -32,6 +36,10 @@ public class GamePanel extends JPanel {
         }
     }
 
+    /**
+     * Automatically calculates the proper size of the grid
+     * @return
+     */
     @Override
     public Dimension getPreferredSize(){
         int cellSize = 30;
@@ -40,6 +48,9 @@ public class GamePanel extends JPanel {
         return new Dimension(width, height);
     }
 
+    /**
+     * Used InputMap, ActionMap to get user KeyStrokes in order to call a method
+     */
     private void keyBindings(){
         InputMap input = getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
         ActionMap action = getActionMap();

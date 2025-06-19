@@ -6,6 +6,11 @@ public class Tetromino {
     private int row;
     private int col;
 
+    /**
+     * Constructor for Tetris piece
+     * @param shape
+     * @param type
+     */
     public Tetromino(int[][] shape, String type){
         this.shape = copyShape(shape);
         this.type = type;
@@ -13,6 +18,11 @@ public class Tetromino {
         this.col = 3;
     }
 
+    /**
+     * Creates a copy of the current piece to ensure proper movement, and keep original shape in case of rotates
+     * @param original
+     * @return
+     */
     private int[][] copyShape(int[][] original){
         int[][] copy = new int[original.length][original[0].length];
         for(int i = 0; i < original.length; i++){
@@ -41,11 +51,9 @@ public class Tetromino {
         return col;
     }
 
-
-    public void moveDown(){
-        row++;
-    }
-
+    /**
+     * Rotates the current piece 90 degrees clockwise by transposing then flipping over rows
+     */
     public void rotate(){
         int x = shape.length;
         //transpose step
@@ -67,6 +75,11 @@ public class Tetromino {
 
     }
 
+    /**
+     * Check bounds to see if the current piece is able to rotate
+     * @param grid
+     * @return
+     */
     public boolean canRotate(char[][] grid){
         int[][] rotated = new int[shape.length][shape.length];
         for(int i = 0; i < shape.length; i++){
@@ -106,7 +119,7 @@ public class Tetromino {
         return true;
     }
 
-    //create shapes
+    //create shapes of all Tetrominos
     public static int[][] LINE_SHAPE = {
             {0, 0, 0, 0},
             {1, 1, 1, 1},
@@ -146,6 +159,10 @@ public class Tetromino {
             {0, 0, 0}
     };
 
+    /**
+     * Gets random number from math.random, and based on this number a shape is chosen
+     * @return
+     */
     public static Tetromino randomShape(){
         Random random = new Random();
         int rand = random.nextInt(7);

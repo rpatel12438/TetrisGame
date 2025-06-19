@@ -6,6 +6,11 @@ import javax.swing.JTextField;
 
 public class Main {
     static Tetromino currentPiece;
+
+    /**
+     * Shows the game window and game panel and starts the autodrop to begin Tetris game
+     * @param args
+     */
     public static void main(String[] args) {
         System.out.println("Welcome to Tetris!");
         startGame();
@@ -16,7 +21,9 @@ public class Main {
         autoDrop(panel);
     }
 
-
+    /**
+     Gets the game ready for user by showing board
+     */
     public static void startGame(){
         System.out.println("Game started.");
         initializeGrid();
@@ -25,6 +32,9 @@ public class Main {
 
     static char[][] grid = new char[20][10];
 
+    /**
+     * Create 2D array to represent the grid
+     */
     public static void initializeGrid(){
         for(int row = 0; row < grid.length; row++){
             for(int col = 0; col < grid[row].length; col++){
@@ -32,6 +42,10 @@ public class Main {
             }
         }
     }
+
+    /**
+     * Iterate through 2D array to print the actual board
+     */
     public static void printGrid(){
         for(int row = 0; row < grid.length; row++){
             for(int col = 0; col < grid[row].length; col++){
@@ -41,6 +55,10 @@ public class Main {
         }
     }
 
+    /**
+     * Searches where a piece is on the grid, then prints '#' if there is a piece
+     * @param piece
+     */
     public static void placePiece(Tetromino piece){
         int[][] shape = piece.getShape();
         int startCol = piece.getCol();
@@ -54,6 +72,9 @@ public class Main {
         }
     }
 
+    /**
+     * Deletes the current position of the current piece, used to reprint pieces that move
+     */
     public static void erasePiece(){
         int [][] shape = currentPiece.getShape();
         int col = currentPiece.getCol();
@@ -68,6 +89,10 @@ public class Main {
     }
 
 
+    /**
+     * Automatically moves pieces down per 1 row per second, like Tetris
+     * @param panel
+     */
     public static void autoDrop(GamePanel panel){
         java.util.Timer timer = new java.util.Timer();
         java.util.TimerTask task = new java.util.TimerTask(){
@@ -95,6 +120,9 @@ public class Main {
         timer.scheduleAtFixedRate(task, 0,1000);
     }
 
+    /**
+     * Method to move the current piece down 1 row
+     */
     public static void moveDown(){
         int col = currentPiece.getCol();
         int row = currentPiece.getRow();
@@ -112,6 +140,10 @@ public class Main {
         printGrid();
     }
 
+    /**
+     * Checks bounds to see if the current piece is able to move down a row
+     * @return
+     */
     public static boolean canMoveDown(){
         int row = currentPiece.getRow();
         int col = currentPiece.getCol();
@@ -136,6 +168,9 @@ public class Main {
         return true;
     }
 
+    /**
+     * Moves the current piece to the right 1 column
+     */
     public static void moveRight(){
         int col = currentPiece.getCol();
         int row = currentPiece.getRow();
@@ -147,6 +182,10 @@ public class Main {
         }
     }
 
+    /**
+     * Checks bounds to see if the current piece is able to move to the right
+     * @return
+     */
     public static boolean canMoveRight(){
         int row = currentPiece.getRow();
         int col = currentPiece.getCol();
@@ -171,6 +210,9 @@ public class Main {
         return true;
     }
 
+    /**
+     * Moves the current piece to the left 1 column
+     */
     public static void moveLeft(){
         int [][] shape = currentPiece.getShape();
         int col = currentPiece.getCol();
@@ -183,6 +225,10 @@ public class Main {
 
     }
 
+    /**
+     * Checks bounds to see if the current piece is able to move left
+     * @return
+     */
     public static boolean canMoveLeft(){
         int [][] shape = currentPiece.getShape();
         int col = currentPiece.getCol();
@@ -203,6 +249,10 @@ public class Main {
         return true;
     }
 
+    /**
+     * Rotates the current piece clockwise, then replaces it on the board
+     * @param panel
+     */
     public static void rotatePiece(GamePanel panel) {
         erasePiece();
         if (currentPiece.canRotate(grid)) {
@@ -213,6 +263,10 @@ public class Main {
     }
 
 
+    /**
+     * Brings the current piece to the lowest possible position
+     * @param panel
+     */
     public static void hardDrop(GamePanel panel){
         erasePiece();
         while(canMoveDown()) {
