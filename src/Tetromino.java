@@ -1,21 +1,26 @@
 import java.util.Random;
+import java.awt.*;
+
+
 
 public class Tetromino {
     private String type;
     private int[][] shape;
     private int row;
     private int col;
+    private Color color;
 
     /**
      * Constructor for Tetris piece
      * @param shape
      * @param type
      */
-    public Tetromino(int[][] shape, String type){
+    public Tetromino(int[][] shape, String type, Color color){
         this.shape = copyShape(shape);
         this.type = type;
         this.row = 0;
         this.col = 3;
+        this.color = color;
     }
 
     /**
@@ -33,6 +38,10 @@ public class Tetromino {
 
     public String toString(){
         return "Piece type is: " + type;
+    }
+
+    public Color getColor(){
+        return color;
     }
 
     public int[][]getShape(){
@@ -83,7 +92,7 @@ public class Tetromino {
      * @param grid
      * @return
      */
-    public boolean canRotate(char[][] grid){
+    public boolean canRotate(Color[][] grid){
         int[][] rotated = new int[shape.length][shape.length];
         for(int i = 0; i < shape.length; i++){
             for(int j = 0; j < shape[i].length; j++){
@@ -113,7 +122,7 @@ public class Tetromino {
                     if(newRow >= grid.length || newRow < 0 || newCol < 0 || newCol >= grid[0].length){
                         return false;
                     }
-                    if(grid[newRow][newCol] == '#'){
+                    if(grid[newRow][newCol] != Color.lightGray){
                         return false;
                     }
                 }
@@ -170,23 +179,21 @@ public class Tetromino {
         Random random = new Random();
         int rand = random.nextInt(7);
         if(rand == 0){
-            return new Tetromino(LINE_SHAPE, "Line");
+            return new Tetromino(LINE_SHAPE, "Line", Color.cyan);
         } else if (rand == 1) {
-            return new Tetromino(T_SHAPE, "T");
+            return new Tetromino(T_SHAPE, "T", Color.magenta);
         } else if (rand == 2) {
-            return new Tetromino(L_SHAPE, "L");
+            return new Tetromino(L_SHAPE, "L", Color.orange);
         } else if (rand == 3) {
-            return new Tetromino(J_SHAPE, "J");
+            return new Tetromino(J_SHAPE, "J", Color.blue);
         } else if (rand == 4) {
-            return new Tetromino(Z_SHAPE, "Z");
+            return new Tetromino(Z_SHAPE, "Z", Color.red);
         } else if (rand == 5) {
-            return new Tetromino(S_SHAPE, "S");
+            return new Tetromino(S_SHAPE, "S", Color.green);
         } else{
-            return new Tetromino(SQUARE_SHAPE, "Square");
+            return new Tetromino(SQUARE_SHAPE, "Square", Color.yellow);
         }
     }
-
-
 
 
 }

@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.JPanel;
@@ -30,7 +31,7 @@ public class Main {
         printGrid();
     }
 
-    static char[][] grid = new char[20][10];
+    static Color[][] grid = new Color[20][10];
 
     /**
      * Create 2D array to represent the grid
@@ -38,7 +39,7 @@ public class Main {
     public static void initializeGrid(){
         for(int row = 0; row < grid.length; row++){
             for(int col = 0; col < grid[row].length; col++){
-                grid[row][col] = '.';
+                grid[row][col] = Color.lightGray;
             }
         }
     }
@@ -63,10 +64,11 @@ public class Main {
         int[][] shape = piece.getShape();
         int startCol = piece.getCol();
         int startRow = piece.getRow();
+        Color color = piece.getColor();
         for(int row = 0; row < shape.length; row++){
             for(int col = 0; col < shape[row].length; col++){
                 if(shape[row][col] == 1){
-                    grid[startRow + row][startCol + col] = '#';
+                    grid[startRow + row][startCol + col] = color;
                 }
             }
         }
@@ -82,7 +84,7 @@ public class Main {
         for(int i = 0; i < shape.length; i++){
             for(int j = 0; j < shape[i].length; j++){
                 if(shape[i][j] == 1){
-                    grid[row + i][col + j] = '.';
+                    grid[row + i][col + j] = Color.lightGray;
                 }
             }
         }
@@ -159,7 +161,7 @@ public class Main {
                         return false;
                     }
 
-                    if(grid[newRow][newCol] == '#'){
+                    if(grid[newRow][newCol] != Color.lightGray){
                         return false;
                     }
                 }
@@ -201,7 +203,7 @@ public class Main {
                         return false;
                     }
 
-                    if(grid[newRow][newCol] == '#'){
+                    if(grid[newRow][newCol] != Color.lightGray){
                         return false;
                     }
                 }
@@ -239,7 +241,7 @@ public class Main {
                 if(shape[i][j] == 1){
                     int newRow = row + i;
                     int newCol = col + j - 1;
-                    if(newCol < 0 || grid[newRow][newCol] == '#'){
+                    if(newCol < 0 || grid[newRow][newCol] != Color.lightGray){
                         return false;
                     }
 

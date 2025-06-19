@@ -4,9 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyListener;
 
 public class GamePanel extends JPanel {
-    private char[][] grid;
+    private Color[][] grid;
 
-   public GamePanel(char[][] grid){
+   public GamePanel(Color[][] grid){
         this.grid = grid;
         setFocusable(true);
         requestFocusInWindow();
@@ -23,14 +23,10 @@ public class GamePanel extends JPanel {
         int cellSize = 30;
         for(int row = 0; row < grid.length; row++){
             for(int col = 0; col < grid[row].length; col++){
-                if(grid[row][col] == '#'){
-                    g.setColor(Color.blue);
-                    g.fillRect(col * cellSize, row * cellSize, cellSize, cellSize);
-                }else{
-                    g.setColor(Color.lightGray);
-                    g.fillRect(col * cellSize, row * cellSize, cellSize, cellSize);
-                }
-                g.setColor(Color.black);
+                g.setColor(grid[row][col]);
+                g.fillRect(col * cellSize, row * cellSize, cellSize, cellSize);
+
+                g.setColor(Color.BLACK);
                 g.drawRect(col * cellSize, row * cellSize, cellSize, cellSize);
             }
         }
