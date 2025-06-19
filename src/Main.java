@@ -95,6 +95,23 @@ public class Main {
         timer.scheduleAtFixedRate(task, 0,1000);
     }
 
+    public static void moveDown(){
+        int col = currentPiece.getCol();
+        int row = currentPiece.getRow();
+        int[][] shape = currentPiece.getShape();
+        erasePiece();
+        if(canMoveDown() == true){
+            currentPiece.setRow((row + 1));
+            placePiece(currentPiece);
+        }else{
+            placePiece(currentPiece);
+            currentPiece = Tetromino.randomShape();
+            placePiece(currentPiece);
+        }
+        placePiece(currentPiece);
+        printGrid();
+    }
+
     public static boolean canMoveDown(){
         int row = currentPiece.getRow();
         int col = currentPiece.getCol();

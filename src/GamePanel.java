@@ -78,5 +78,14 @@ public class GamePanel extends JPanel {
                 repaint();
             }
         });
+
+        input.put(KeyStroke.getKeyStroke("DOWN"), "moveDown");
+        action.put("moveDown", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Main.moveDown();
+                repaint();
+            }
+        });
     }
 }
