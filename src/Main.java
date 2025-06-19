@@ -287,7 +287,12 @@ public class Main {
         panel.repaint();
         }
 
-        public static boolean checkGameOver(Tetromino piece){
+    /**
+     * Checks to see if the game should be ended if certain conditions are met
+     * @param piece
+     * @return
+     */
+    public static boolean checkGameOver(Tetromino piece){
             int [][] shape = piece.getShape();
             int row = piece.getRow();
             int col = piece.getCol();
