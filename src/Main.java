@@ -39,7 +39,7 @@ public class Main {
     public static void initializeGrid(){
         for(int row = 0; row < grid.length; row++){
             for(int col = 0; col < grid[row].length; col++){
-                grid[row][col] = Color.lightGray;
+                grid[row][col] = Color.black;
             }
         }
     }
@@ -84,7 +84,7 @@ public class Main {
         for(int i = 0; i < shape.length; i++){
             for(int j = 0; j < shape[i].length; j++){
                 if(shape[i][j] == 1){
-                    grid[row + i][col + j] = Color.lightGray;
+                    grid[row + i][col + j] = Color.black;
                 }
             }
         }
@@ -111,6 +111,12 @@ public class Main {
                     placePiece(currentPiece);
                 }else{
                     placePiece(currentPiece);
+                    if (checkGameOver(currentPiece)) {
+                        panel.repaint();
+                        placePiece(currentPiece);
+                        JOptionPane.showMessageDialog(null, "Game Over!", "Game Over", JOptionPane.INFORMATION_MESSAGE);
+                        System.exit(0); // Ends the game
+                    }
                     currentPiece = Tetromino.randomShape();
                     placePiece(currentPiece);
                 }
@@ -161,7 +167,7 @@ public class Main {
                         return false;
                     }
 
-                    if(grid[newRow][newCol] != Color.lightGray){
+                    if(grid[newRow][newCol] != Color.black){
                         return false;
                     }
                 }
@@ -203,7 +209,7 @@ public class Main {
                         return false;
                     }
 
-                    if(grid[newRow][newCol] != Color.lightGray){
+                    if(grid[newRow][newCol] != Color.black){
                         return false;
                     }
                 }
@@ -241,7 +247,7 @@ public class Main {
                 if(shape[i][j] == 1){
                     int newRow = row + i;
                     int newCol = col + j - 1;
-                    if(newCol < 0 || grid[newRow][newCol] != Color.lightGray){
+                    if(newCol < 0 || grid[newRow][newCol] != Color.black){
                         return false;
                     }
 
@@ -279,5 +285,23 @@ public class Main {
         placePiece(currentPiece);
         printGrid();
         panel.repaint();
+        }
+
+        public static boolean checkGameOver(Tetromino piece){
+            int [][] shape = piece.getShape();
+            int row = piece.getRow();
+            int col = piece.getCol();
+
+            for(int i = 0; i < shape.length; i++){
+                for(int j = 0; j < shape[i].length; j++){
+                    if(shape[i][j] == 1){
+                        int gridRow = row + i;
+                        if(gridRow == 0){
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
         }
     }
