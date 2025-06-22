@@ -302,4 +302,11 @@ public class Main {
             }
             return false;
         }
+        public static void clearLine(){
+
+        }
+
+        public static boolean checkLine(){
+            return true;
+        }
     }

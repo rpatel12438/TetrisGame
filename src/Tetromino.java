@@ -131,6 +131,14 @@ public class Tetromino {
         return true;
     }
 
+    public static void clearLine(){
+
+    }
+
+    public static boolean checkLine(){
+        return true;
+    }
+
     //create shapes of all Tetrominos
     public static int[][] LINE_SHAPE = {
             {0, 0, 0, 0},
