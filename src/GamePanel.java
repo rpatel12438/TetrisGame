@@ -26,7 +26,7 @@ public class GamePanel extends JPanel {
                 g.setColor(grid[row][col]);
                 g.fillRect(col * cellSize, row * cellSize, cellSize, cellSize);
 
-                g.setColor(Color.lightGray);
+                g.setColor(Color.black);
                 g.drawRect(col * cellSize, row * cellSize, cellSize, cellSize);
             }
         }

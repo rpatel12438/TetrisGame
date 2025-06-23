@@ -40,7 +40,7 @@ public class Main {
     public static void initializeGrid(){
         for(int row = 0; row < grid.length; row++){
             for(int col = 0; col < grid[row].length; col++){
-                grid[row][col] = Color.black;
+                grid[row][col] = Color.darkGray;
             }
         }
     }
@@ -85,7 +85,7 @@ public class Main {
         for(int i = 0; i < shape.length; i++){
             for(int j = 0; j < shape[i].length; j++){
                 if(shape[i][j] == 1){
-                    grid[row + i][col + j] = Color.black;
+                    grid[row + i][col + j] = Color.darkGray;
                 }
             }
         }
@@ -170,7 +170,7 @@ public class Main {
                         return false;
                     }
 
-                    if(grid[newRow][newCol] != Color.black){
+                    if(grid[newRow][newCol] != Color.darkGray){
                         return false;
                     }
                 }
@@ -211,7 +211,7 @@ public class Main {
                         return false;
                     }
 
-                    if(grid[newRow][newCol] != Color.black){
+                    if(grid[newRow][newCol] != Color.darkGray){
                         return false;
                     }
                 }
@@ -249,7 +249,7 @@ public class Main {
                 if(shape[i][j] == 1){
                     int newRow = row + i;
                     int newCol = col + j - 1;
-                    if(newCol < 0 || grid[newRow][newCol] != Color.black){
+                    if(newCol < 0 || grid[newRow][newCol] != Color.darkGray){
                         return false;
                     }
 
@@ -323,7 +323,7 @@ public class Main {
             for (int row = 0; row < grid.length; row++) {
                 boolean fullLine = true;
                 for (int col = 0; col < grid[row].length; col++) {
-                    if (grid[row][col] == Color.black) {  // empty cells are black
+                    if (grid[row][col] == Color.darkGray) {  // empty cells are darkGray
                         fullLine = false;
                         break;
                     }
@@ -345,7 +345,7 @@ public class Main {
                 System.arraycopy(grid[row - 1], 0, grid[row], 0, grid[row].length);
             }
             for (int col = 0; col < grid[0].length; col++) {
-                grid[0][col] = Color.black;
+                grid[0][col] = Color.darkGray;
             }
         }
 

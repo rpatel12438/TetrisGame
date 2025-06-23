@@ -122,7 +122,7 @@ public class Tetromino {
                     if(newRow >= grid.length || newRow < 0 || newCol < 0 || newCol >= grid[0].length){
                         return false;
                     }
-                    if(grid[newRow][newCol] != Color.black){
+                    if(grid[newRow][newCol] != Color.darkGray){
                         return false;
                     }
                 }
