@@ -116,8 +116,8 @@ public class Main {
                     if (checkGameOver(currentPiece)) {
                         panel.repaint();
                         placePiece(currentPiece);
-                        JOptionPane.showMessageDialog(null, "Game Over!", "Game Over", JOptionPane.INFORMATION_MESSAGE);
-                        System.exit(0); // Ends the game
+                        JOptionPane.showMessageDialog(null, "Game Over!\n Total line cleared: " + totalLinesCleared, "Game Over", JOptionPane.INFORMATION_MESSAGE);
+                        System.exit(0);
                     }
                     currentPiece = Tetromino.randomShape();
                     placePiece(currentPiece);
@@ -139,12 +139,15 @@ public class Main {
         if(canMoveDown() == true){
             currentPiece.setRow((row + 1));
             placePiece(currentPiece);
+            clearFullLines();
         }else{
             placePiece(currentPiece);
+            clearFullLines();
             currentPiece = Tetromino.randomShape();
             placePiece(currentPiece);
         }
         placePiece(currentPiece);
+        clearFullLines();
         printGrid();
     }
 
@@ -310,7 +313,13 @@ public class Main {
             return false;
         }
 
-        public static void clearFullLines() {
+    static int totalLinesCleared = 0;
+
+    /**
+     * If a row is completely full, the line is cleared
+     */
+    public static void clearFullLines() {
+        int count = 0;
             for (int row = 0; row < grid.length; row++) {
                 boolean fullLine = true;
                 for (int col = 0; col < grid[row].length; col++) {
@@ -321,16 +330,20 @@ public class Main {
                 }
                 if (fullLine) {
                     clearLine(row);
+                    count++;
                 }
             }
+            totalLinesCleared += count;
         }
 
-        public static void clearLine(int line) {
-            // Move all rows above 'line' down by one row
+    /**
+     * Method that actually clears the line and move all other rows down 1
+     * @param line
+     */
+    public static void clearLine(int line) {
             for (int row = line; row > 0; row--) {
                 System.arraycopy(grid[row - 1], 0, grid[row], 0, grid[row].length);
             }
-            // Clear top row
             for (int col = 0; col < grid[0].length; col++) {
                 grid[0][col] = Color.black;
             }
