@@ -20,6 +20,7 @@ public class Main {
         GamePanel panel = new GamePanel((grid));
         GameWindow window = new GameWindow(panel);
         autoDrop(panel);
+
     }
 
     /**
@@ -302,11 +303,5 @@ public class Main {
             }
             return false;
         }
-        public static void clearLine(){
 
-        }
-
-        public static boolean checkLine(){
-            return true;
-        }
-    }
+}
