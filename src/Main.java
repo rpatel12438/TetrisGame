@@ -111,6 +111,8 @@ public class Main {
                     placePiece(currentPiece);
                 }else{
                     placePiece(currentPiece);
+                    clearFullLines();
+
                     if (checkGameOver(currentPiece)) {
                         panel.repaint();
                         placePiece(currentPiece);
@@ -183,6 +185,7 @@ public class Main {
         if(canMoveRight() == true) {
             currentPiece.setCol(col + 1);
             placePiece(currentPiece);
+            clearFullLines();
         }
     }
 
@@ -224,6 +227,7 @@ public class Main {
         if(canMoveLeft() == true){
             currentPiece.setCol(col - 1);
             placePiece(currentPiece);
+            clearFullLines();
         }
 
     }
@@ -262,6 +266,7 @@ public class Main {
             currentPiece.rotate();
         }
         placePiece(currentPiece);
+        clearFullLines();
         panel.repaint();
     }
 
@@ -276,6 +281,7 @@ public class Main {
             currentPiece.moveDown();
         }
         placePiece(currentPiece);
+        clearFullLines();
         currentPiece = Tetromino.randomShape();
         placePiece(currentPiece);
         printGrid();
@@ -302,6 +308,32 @@ public class Main {
                 }
             }
             return false;
+        }
+
+        public static void clearFullLines() {
+            for (int row = 0; row < grid.length; row++) {
+                boolean fullLine = true;
+                for (int col = 0; col < grid[row].length; col++) {
+                    if (grid[row][col] == Color.black) {  // empty cells are black
+                        fullLine = false;
+                        break;
+                    }
+                }
+                if (fullLine) {
+                    clearLine(row);
+                }
+            }
+        }
+
+        public static void clearLine(int line) {
+            // Move all rows above 'line' down by one row
+            for (int row = line; row > 0; row--) {
+                System.arraycopy(grid[row - 1], 0, grid[row], 0, grid[row].length);
+            }
+            // Clear top row
+            for (int col = 0; col < grid[0].length; col++) {
+                grid[0][col] = Color.black;
+            }
         }
 
 }
